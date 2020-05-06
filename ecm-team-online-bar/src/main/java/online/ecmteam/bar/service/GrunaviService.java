@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Data;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -26,33 +27,27 @@ public class GrunaviService {
 		Request request = new Request.Builder().url(url).build();
 		Call call = client.newCall(request);
 		Response response = null;
+        RecommendedBar bar = new RecommendedBar();
 		try {
 			response = call.execute();
+			if ( response.code() == 429 ) {
+				bar.setName("一日の上限を超えたため、ぐるなびAPIからデータが取得できませんでした。");
+			} else {
+		        ObjectMapper mapper = new ObjectMapper();
+		        JsonNode node;
+				node = (mapper.readTree(response.body().string())).get("rest").get(0);			 
+				bar.setId(node.get("id").asText());
+				bar.setName(node.get("name").asText());
+				bar.setOpentime(node.get("opentime").asText());
+				bar.setTel(node.get("tel").asText());
+				bar.setAddress(node.get("address").asText());
+				bar.setUrl(node.get("url").asText());
+				bar.setImageurl(node.get("image_url").get("shop_image1").asText());
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-        ObjectMapper mapper = new ObjectMapper();
-        RecommendedBar bar = new RecommendedBar();
-        JsonNode node;
-		try {
-			node = (mapper.readTree(response.body().string())).get("rest").get(0);			 
-			bar.setId(node.get("id").asText());
-			bar.setName(node.get("name").asText());
-			bar.setOpentime(node.get("opentime").asText());
-			bar.setTel(node.get("tel").asText());
-			bar.setAddress(node.get("address").asText());
-			bar.setUrl(node.get("url").asText());
-			bar.setImageurl(node.get("image_url").get("shop_image1").asText());
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		return bar;
 	}
-	
-
 }
