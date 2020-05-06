@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,7 +11,6 @@ import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 import online.ecmteam.bar.domain.RecommendedBar;
 
 @Service
@@ -35,20 +32,20 @@ public class GrunaviService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ResponseBody body = response.body();
 		
-
         ObjectMapper mapper = new ObjectMapper();
         RecommendedBar bar = new RecommendedBar();
         JsonNode node;
 		try {
 			node = (mapper.readTree(response.body().string())).get("rest").get(0);			 
-			 bar.setId(node.get("id").toString());
-			 bar.setName(node.get("name").toString());
-			 bar.setOpentime(node.get("opentime").toString());
-			 bar.setTel(node.get("tel").toString());
-			 bar.setAddress(node.get("address").toString());
-			 bar.setUrl(node.get("url").toString());
+			bar.setId(node.get("id").asText());
+			bar.setName(node.get("name").asText());
+			bar.setOpentime(node.get("opentime").asText());
+			bar.setTel(node.get("tel").asText());
+			bar.setAddress(node.get("address").asText());
+			bar.setUrl(node.get("url").asText());
+			bar.setImageurl(node.get("image_url").get("shop_image1").asText());
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

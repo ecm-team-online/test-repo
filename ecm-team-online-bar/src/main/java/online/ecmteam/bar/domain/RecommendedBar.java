@@ -43,4 +43,9 @@ public class RecommendedBar implements Serializable {
 	 */
 	private String url;
 	
+	/**
+	 * イメージURL
+	 */
+	private String imageurl;
+	
 }
