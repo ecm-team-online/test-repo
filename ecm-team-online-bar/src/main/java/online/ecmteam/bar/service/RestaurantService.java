@@ -32,15 +32,15 @@ public class RestaurantService {
 	/**
 	 * データ追加
 	 */	
-	public Restaurant create(Restaurant customer) {
-		return restaurantRepository.save(customer);
+	public Restaurant create(Restaurant restaurant) {
+		return restaurantRepository.save(restaurant);
 	}
 
 	/**
 	 * データ更新
 	 */	
-	public Restaurant update(Restaurant customer) {
-		return restaurantRepository.save(customer);
+	public Restaurant update(Restaurant restaurant) {
+		return restaurantRepository.save(restaurant);
 	}
 
 	/**
@@ -49,6 +49,4 @@ public class RestaurantService {
 	public void delete(Integer id) {
 		restaurantRepository.deleteById(id);
 	}
-	
-	
 }

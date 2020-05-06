@@ -1,4 +1,4 @@
-package online.ecmteam.bar.api;
+package online.ecmteam.bar.api.v1;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import online.ecmteam.bar.domain.Restaurant;
 import online.ecmteam.bar.service.RestaurantService;
 
 @RestController
-@RequestMapping("api/restaurants")
+@RequestMapping("api/v1/restaurants")
 public class RestaurantRestController {
 
 	@Autowired
@@ -35,6 +35,5 @@ public class RestaurantRestController {
 	Optional<Restaurant> getRestaurant(@PathVariable Integer id) {
 		Optional<Restaurant> restaurant = restaurantService.findOne(id);
 		return restaurant;
-		
 	}
 }
