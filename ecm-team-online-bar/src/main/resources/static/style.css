@@ -1,0 +1,17 @@
+body {
+  /* font-family: 'MS ゴシック', Georgia, 'Times New Roman', Times, serif; */
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  /* background: #0c0647; */
+  background-image: url("./background-photo.jpg");
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: lighten;
+}
+
+.container {
+  margin-top: 30px;
+  padding-top: 30px;
+  max-width: 350px;
+  min-height: 400px;
+  background-color: white;
+}
