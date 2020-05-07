@@ -19,6 +19,7 @@ function getRecommend() {
     var address = '<tr><td>' + json.address + '</td></tr>';
     var opentime = '<tr><td>' + json.opentime + '</td></tr>';
     var tel = '<tr><td>' + json.tel + '</td></tr>';
+    var tel = '<tr><td><a href="' + json.url + '" target="_blank">店舗URLへ</a></td></tr>';
     var restaurantimg = '<tr><td><img src="' + json.imageurl + '"/></tr></td>'
     var body = '<tbody>' + address + opentime + tel + restaurantimg + '</tbody></table>';
 
