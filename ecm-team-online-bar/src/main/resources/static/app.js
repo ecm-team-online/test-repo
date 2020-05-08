@@ -20,8 +20,9 @@ function getRecommend() {
     var opentime = '<tr><td>' + json.opentime + '</td></tr>';
     var tel = '<tr><td>' + json.tel + '</td></tr>';
     var tel = '<tr><td><a href="' + json.url + '" target="_blank">店舗URLへ</a></td></tr>';
-    var restaurantimg = '<tr><td><img src="' + json.imageurl + '"/></tr></td>'
-    var body = '<tbody>' + address + opentime + tel + restaurantimg + '</tbody></table>';
+    var restaurantimg = '<tr><td><img src="' + json.imageurl + '"/></tr></td>';
+    var credit = '<tr><td>Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a></tr></td>';
+    var body = '<tbody>' + address + opentime + tel + restaurantimg + credit + '</tbody></table>';
 
     $('#spiner').remove();
     $('#result').html(head + body);
